@@ -125,7 +125,12 @@ public class PlayerController : RigidSwitch
             transform.GetChild(1).GetChild(i).GetComponent<Light>().range = value;
         }
     }
+    protected override void CliffFallStart()
+    {
+        controllable = false;
 
+        Debug.Log("게임 오버");
+    }
 
     public override void ToOrthoComplete()
     {
@@ -154,8 +159,8 @@ public class PlayerController : RigidSwitch
     }
     public override void ToPerspComplete()
     {
-        base.ToPerspComplete();
-
         controllable = true;
+
+        base.ToPerspComplete();
     }
 }

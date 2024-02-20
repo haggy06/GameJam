@@ -49,8 +49,6 @@ public class RigidSwitch : ProjectionBase
         if (collision.CompareTag("Cliff"))
         {
             isOnCliff++;
-
-            Debug.Log("절벽 올라섬");
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -58,8 +56,6 @@ public class RigidSwitch : ProjectionBase
         if (collision.CompareTag("Cliff"))
         {
             isOnCliff--;
-
-            Debug.Log("절벽 떨어짐");
 
             if (isOnCliff <= 0 && !ProjectionManager.Inst.Orthographic) // 절벽에서 떨어졌는데 Perspective일 경우
             {
@@ -69,9 +65,15 @@ public class RigidSwitch : ProjectionBase
             }
         }
     }
-
-    protected virtual IEnumerator FallToCliff()
+    protected virtual void CliffFallStart()
     {
+
+    }
+
+    private IEnumerator FallToCliff()
+    {
+        CliffFallStart();
+
         changeable = false;
         transform.parent = null;
 
@@ -83,7 +85,7 @@ public class RigidSwitch : ProjectionBase
             transform.localPosition += Vector3.forward * curSpeed;
             time += Time.deltaTime;
 
-            curSpeed += Time.deltaTime * 0.1f;
+            curSpeed += Time.deltaTime * 0.5f;
             yield return null;
         }
 
