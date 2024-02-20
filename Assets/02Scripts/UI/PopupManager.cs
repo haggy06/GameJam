@@ -6,11 +6,19 @@ using UnityEngine.UI;
 
 public class PopupManager : MonoSingleton<PopupManager>
 {
+    [SerializeField]
+    private VirtualButton virtualButton;
+    public VirtualButton VirtualButton => virtualButton;
+
+
     #region _Popups_
     // ↓ 이런 식으로 팝업매니저 내의 주요 팝업들을 관리한다(해당되는 팝업을 Inspector 창에서 넣어줘야 함).
     [SerializeField]
-    private PopupBase popup01;
-    public PopupBase Popup01 => popup01;
+    private FadePopup fade;
+    public FadePopup Fade => fade;
+
+
+
     #endregion
 
     [Space(10)]
@@ -35,10 +43,6 @@ public class PopupManager : MonoSingleton<PopupManager>
             }
         }
     }
-
-    [SerializeField]
-    private VirtualButton virtualButton;
-    public VirtualButton VirtualButton => virtualButton;
 
     public void ResetButton(ButtonNode firstNode)
     {
@@ -69,6 +73,14 @@ public class PopupManager : MonoSingleton<PopupManager>
 
             if (Input.GetKeyDown(KeyCode.Space)) curButton.ButtonClick();
         }
+    }
+
+    public void NextSceneLoaded()
+    {
+        Debug.Log("팝업 매니저 리셋");
+
+        fade.PopupShow(null);
+        fade.PopupFadeOut();
     }
 
     #region _Popup Fade In/Out Logic_

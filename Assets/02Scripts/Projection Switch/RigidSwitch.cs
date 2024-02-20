@@ -50,6 +50,13 @@ public class RigidSwitch : ProjectionBase
         {
             isOnCliff++;
         }
+        else if (collision.CompareTag("FallingZone"))
+        {
+            changeable = false;
+            FallStart();
+
+            gameObject.SetActive(false);
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -65,14 +72,14 @@ public class RigidSwitch : ProjectionBase
             }
         }
     }
-    protected virtual void CliffFallStart()
+
+    protected virtual void FallStart()
     {
 
     }
-
     private IEnumerator FallToCliff()
     {
-        CliffFallStart();
+        FallStart();
 
         changeable = false;
         transform.parent = null;

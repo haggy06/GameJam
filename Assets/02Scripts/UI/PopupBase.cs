@@ -37,21 +37,27 @@ public class PopupBase : MonoBehaviour
     #region _Popup Logic_
     public void PopupFadeIn(PopupBase ownerPopup)
     {
+        OnActive();
+
         this.ownerPopup = ownerPopup;
-        LeanTween.value(popup.alpha, 1f, duration).setEase(LeanTweenType.linear).setOnUpdate((float value) => popup.alpha = value);
+        LeanTween.value(popup.alpha, 1f, duration).setEase(LeanTweenType.linear).setOnUpdate((float value) => popup.alpha = value).setOnComplete(FadeInFinish);
 
         CanvasAct(true);
     }
     public void PopupFadeOut()
     {
-        LeanTween.value(popup.alpha, 0f, duration).setEase(LeanTweenType.linear).setOnUpdate((float value) => popup.alpha = value);
+        OnDeActive();
+
+        LeanTween.value(popup.alpha, 0f, duration).setEase(LeanTweenType.linear).setOnUpdate((float value) => popup.alpha = value).setOnComplete(FadeOutFinish);
 
         CanvasAct(false);
     }
 
     public void PopupFadeIn_Again()
     {
-        LeanTween.value(popup.alpha, 1f, duration).setEase(LeanTweenType.linear).setOnUpdate((float value) => popup.alpha = value);
+        OnActive();
+
+        LeanTween.value(popup.alpha, 1f, duration).setEase(LeanTweenType.linear).setOnUpdate((float value) => popup.alpha = value).setOnComplete(FadeInFinish);
 
         CanvasAct(true);
     }
@@ -60,6 +66,8 @@ public class PopupBase : MonoBehaviour
 
     public void PopupShow(PopupBase ownerPopup)
     {
+        OnActive();
+
         this.ownerPopup = ownerPopup;
         popup.alpha = 1f;
 
@@ -67,6 +75,8 @@ public class PopupBase : MonoBehaviour
     }
     public void PopupHide()
     {
+        OnDeActive();
+
         popup.alpha = 0f;
 
         CanvasAct(false);
@@ -74,6 +84,8 @@ public class PopupBase : MonoBehaviour
 
     public void PopupShow_Again()
     {
+        OnActive();
+
         popup.alpha = 1f;
 
         CanvasAct(true);

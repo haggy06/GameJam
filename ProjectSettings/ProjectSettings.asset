@@ -769,11 +769,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: b7cdc414-8edd-4a8e-849f-13dcb902c669
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: GameJam
+  organizationId: haggy06
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 

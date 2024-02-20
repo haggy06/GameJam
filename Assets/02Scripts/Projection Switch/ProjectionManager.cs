@@ -65,7 +65,7 @@ public class ProjectionManager : MonoSingleton<ProjectionManager>
             }
 
             //LeanTween.moveZ(backgroundObj, -1f, duration).setEase(LeanTweenType.easeOutCirc);
-            LeanTween.scaleZ(mapObj, 0.001f, duration).setEase(leanType).setOnComplete(ToOrtho);
+            LeanTween.scaleZ(mapObj, 0.0001f, duration).setEase(leanType).setOnComplete(ToOrtho);
 
             LeanTween.move(cameraObj, Vector3.back * 15.585f, duration).setEase(leanType);
             //LeanTween.move(cameraObj, Vector3.back * 21.7f, duration).setEase(leanType);

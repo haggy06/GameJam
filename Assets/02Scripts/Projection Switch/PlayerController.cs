@@ -125,7 +125,7 @@ public class PlayerController : RigidSwitch
             transform.GetChild(1).GetChild(i).GetComponent<Light>().range = value;
         }
     }
-    protected override void CliffFallStart()
+    protected override void FallStart()
     {
         controllable = false;
 

@@ -25,7 +25,7 @@ public class FadePopup : PopupBase
         switch (curFadeType)
         {
             case FadeType.SceneMove:
-                
+                GameManager.Inst.GoLoadingScene();
                 break;
 
 
@@ -33,5 +33,7 @@ public class FadePopup : PopupBase
 
                 break;
         }
+
+        Debug.Log("페이드 이벤트 실행");
     }
 }
