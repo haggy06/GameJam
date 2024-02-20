@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.UI;
+
 public class PopupManager : MonoSingleton<PopupManager>
 {
     #region _Popups_
@@ -10,6 +12,40 @@ public class PopupManager : MonoSingleton<PopupManager>
     private PopupBase popup01;
     public PopupBase Popup01 => popup01;
     #endregion
+
+    [Space(10)]
+
+    [SerializeField]
+    private ButtonNode curButton;
+    public ButtonNode CurButton
+    {
+        get => curButton;
+        set
+        {
+            if (curButton != null)
+            {
+                curButton.ButtonNormal();
+            }
+
+            curButton = value;
+
+            if (curButton != null)
+            {
+                curButton.ButtonHighlight();
+            }
+        }
+    }
+
+    [SerializeField]
+    private VirtualButton virtualButton;
+    public VirtualButton VirtualButton => virtualButton;
+
+    public void ResetButton(ButtonNode firstNode)
+    {
+        curButton = virtualButton;
+
+        virtualButton.SetNode(firstNode);
+    }
 
     private void Update()
     {
@@ -21,13 +57,17 @@ public class PopupManager : MonoSingleton<PopupManager>
             }
         }
 
-        if (Input.GetButtonDown("Horizontal"))
+        if (curButton != null)
         {
-            Debug.Log("가로 이동");
-        }
-        if (Input.GetButtonDown("Vertical"))
-        {
-            Debug.Log("세로 이동");
+            if (Input.GetKeyDown(KeyCode.UpArrow) && curButton.Node_Up != null) CurButton = curButton.Node_Up;
+            
+            else if (Input.GetKeyDown(KeyCode.DownArrow) && curButton.Node_Down != null) CurButton = curButton.Node_Down;
+            
+            else if (Input.GetKeyDown(KeyCode.RightArrow) && curButton.Node_Right != null) CurButton = curButton.Node_Right;
+
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) && curButton.Node_Left != null) CurButton = curButton.Node_Left;
+
+            if (Input.GetKeyDown(KeyCode.Space)) curButton.ButtonClick();
         }
     }
 

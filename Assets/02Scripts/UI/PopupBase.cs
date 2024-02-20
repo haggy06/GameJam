@@ -10,7 +10,10 @@ public class PopupBase : MonoBehaviour
     protected CanvasGroup popup;
 
     [SerializeField]
-    protected bool closeWithESC = false;
+    protected ButtonNode firstButton;
+
+    [SerializeField]
+    protected bool closeWithESC = true;
     public bool CloseWithESC => closeWithESC;
     [SerializeField]
     protected float duration = 0.5f;
@@ -89,11 +92,11 @@ public class PopupBase : MonoBehaviour
 
     protected virtual void OnActive()
     {
-
+        PopupManager.Inst.ResetButton(firstButton);
     }
     protected virtual void OnDeActive()
     {
-
+        PopupManager.Inst.ResetButton(null);
     }
     #endregion
 }
