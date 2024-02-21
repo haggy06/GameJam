@@ -23,9 +23,33 @@ public class ChapterSelectPopup : PopupBase
     {
         base.Awake();
 
-        chapterArr.GetChild(curChapterIndex).GetComponent<ChapterInfo>();
+        GetComponent<Button>().onClick.AddListener(ChapterButtonEvent);
+
+
+        chapterArr.localPosition = Vector3.right * (((curChapterIndex) * -400f) - 175f);
+        ChapterHighlight();
+
 
         PopupManager.Inst.PopupFadeIn(this, null);
+    }
+    private void ChapterHighlight()
+    {
+        if (!chapterArr.GetChild(curChapterIndex).TryGetComponent<ChapterInfo>(out curChapter))
+        {
+            Debug.Log("ChapterInfo 참조 실패");
+        }
+        chapterName.text = curChapter.ChapterName;
+
+        curChapter.ChapterHighlighted();
+    }
+
+
+    private void ChapterButtonEvent()
+    {
+        if (curChapter != null)
+        {
+            curChapter.ChapterSelect();
+        }
     }
 
     [SerializeField]
@@ -37,23 +61,44 @@ public class ChapterSelectPopup : PopupBase
     private void Update()
     {
         
-        if (Input.GetButtonDown("Horizontal")) // 입력이 존재했을 경우
+        if (controllable)
         {
-            Debug.Log("이동 감지 : " + input);
-
-            input = (int)Input.GetAxisRaw("Horizontal");
-            curChapterIndex += input;
-
-            if (curChapterIndex < chapterArr.childCount && curChapterIndex >= 0) // 이동했을 때 인덱스오버가 안 날 경우
+            if (Input.GetButtonDown("Horizontal")) // 입력이 존재했을 경우
             {
-                LeanTween.moveLocalX(chapterArr.gameObject, ((curChapterIndex) * -400f), lerpTime)/*.setEase(LeanTweenType.easeOutQuart)*/;
+                Debug.Log("이동 감지 : " + input);
 
-                chapterArr.GetChild(curChapterIndex).GetComponent<ChapterInfo>();
+                input = (int)Input.GetAxisRaw("Horizontal");
+                curChapterIndex += input;
+
+                if (curChapterIndex < chapterArr.childCount && curChapterIndex >= 0) // 이동했을 때 인덱스오버가 안 날 경우
+                {
+                    LeanTween.moveLocalX(chapterArr.gameObject, ((curChapterIndex) * -400f) - 175f, lerpTime).setEase(LeanTweenType.easeOutQuart);
+
+                    ChapterHighlight();
+                }
+                else // 인덱스 오버가 날 경우
+                {
+                    curChapterIndex -= input;
+                }
             }
-            else // 인덱스 오버가 날 경우
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                curChapterIndex -= input;
+                ChapterButtonEvent();
             }
         }
+    }
+
+    private bool controllable;
+    protected override void OnActive()
+    {
+        base.OnActive();
+
+        controllable = true;
+    }
+    protected override void OnDeActive()
+    {
+        base.OnDeActive();
+
+        controllable = false;
     }
 }

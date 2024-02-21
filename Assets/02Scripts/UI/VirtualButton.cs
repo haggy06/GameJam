@@ -17,6 +17,10 @@ public class VirtualButton : ButtonNode
         {
             Debug.Log(newNode.gameObject.name + "으로 노드 설정 완료");
         }
+        else
+        {
+            Debug.Log("null로 노드 초기화 완료");
+        }
     }
 
     protected override void Awake()

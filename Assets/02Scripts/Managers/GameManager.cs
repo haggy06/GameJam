@@ -10,6 +10,8 @@ public enum SCENE
     Loading,
     Title,
     StageSelect,
+    Stage1_1,
+    Stage1_2,
 
 }
 

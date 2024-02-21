@@ -60,7 +60,7 @@ public class PopupManager : MonoSingleton<PopupManager>
     {
         if (Input.GetKeyDown(KeyCode.Escape)) // ESC를 눌렀을 경우
         {
-            if (currentPopup != null) // 열려있는 팝업이 있었을 경우
+            if (currentPopup != null && currentPopup.CloseWithESC) // 열려있는 팝업이 있었고 esc로 닫을 수 있을 경우
             {
                 PopupFadeOut();
             }
@@ -89,6 +89,7 @@ public class PopupManager : MonoSingleton<PopupManager>
     }
 
     #region _Popup Fade In/Out Logic_
+    [SerializeField]
     private PopupBase currentPopup;
     public PopupBase CurrentPopup => currentPopup;
     public void PopupFadeIn(PopupBase openPopup, PopupBase ownerPopup)
@@ -99,13 +100,13 @@ public class PopupManager : MonoSingleton<PopupManager>
         }
         else // 열 팝업이 맨 위에 열려 있지 않을 경우
         {
-            openPopup.PopupFadeIn(ownerPopup);
-
             if (currentPopup != null)
             {
                 currentPopup.PopupFadeOut();
             }
+
             currentPopup = openPopup;
+            currentPopup.PopupFadeIn(ownerPopup);
         }
     }
 

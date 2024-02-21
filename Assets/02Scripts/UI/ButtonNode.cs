@@ -36,6 +36,7 @@ internal class ButtonHash
 }
 
 
+[RequireComponent(typeof(Button))]
 public class ButtonNode : MonoBehaviour
 {
     #region _Nodes_
@@ -98,7 +99,7 @@ public class ButtonNode : MonoBehaviour
 
         anim.SetTrigger(ButtonHash.Pressed);
 
-        Invoke("EventStart", 0.25f);
+        Invoke("EventStart", 0.125f);
     }
     private void EventStart()
     {
