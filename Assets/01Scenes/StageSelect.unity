@@ -1247,7 +1247,7 @@ GameObject:
   - component: {fileID: 135258104688825075}
   - component: {fileID: 2112567890087229844}
   - component: {fileID: 8473471634106342925}
-  - component: {fileID: 8473471634106342923}
+  - component: {fileID: 8473471634106342926}
   m_Layer: 5
   m_Name: Stage 1
   m_TagString: Untagged
@@ -1442,7 +1442,7 @@ GameObject:
   - component: {fileID: 8124390546212085554}
   - component: {fileID: 1066534763206967649}
   - component: {fileID: 8473471634576556170}
-  - component: {fileID: 8473471634576556169}
+  - component: {fileID: 8473471634576556171}
   m_Layer: 5
   m_Name: Stage 2
   m_TagString: Untagged
@@ -1450,22 +1450,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &8473471634106342923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 289141759654346439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c4c338aab9ba72499ccb798f0f6ba77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  node_Left: {fileID: 8473471634576556169}
-  node_Right: {fileID: 8473471634576556169}
-  node_Up: {fileID: 0}
-  node_Down: {fileID: 0}
 --- !u!95 &8473471634106342925
 Animator:
   serializedVersion: 5
@@ -1487,22 +1471,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8473471634576556169
+--- !u!114 &8473471634106342926
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8139213253105016919}
+  m_GameObject: {fileID: 289141759654346439}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c4c338aab9ba72499ccb798f0f6ba77, type: 3}
+  m_Script: {fileID: 11500000, guid: 875afd2950f907340beeec28f6ae9dfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  node_Left: {fileID: 8473471634106342923}
-  node_Right: {fileID: 8473471634106342923}
+  node_Left: {fileID: 8473471634576556171}
+  node_Right: {fileID: 8473471634576556171}
   node_Up: {fileID: 0}
   node_Down: {fileID: 0}
+  targetScene: 0
 --- !u!95 &8473471634576556170
 Animator:
   serializedVersion: 5
@@ -1524,6 +1509,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8473471634576556171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8139213253105016919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 875afd2950f907340beeec28f6ae9dfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  node_Left: {fileID: 8473471634106342926}
+  node_Right: {fileID: 8473471634106342926}
+  node_Up: {fileID: 0}
+  node_Down: {fileID: 0}
+  targetScene: 0
 --- !u!114 &8473471635378596093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1536,14 +1538,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e7cc78fbbd01da4a935067369236d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstButton: {fileID: 8473471634106342923}
+  firstButton: {fileID: 0}
   closeWithESC: 1
   duration: 0.25
   ownerPopup: {fileID: 0}
   chapterName: {fileID: 731779935}
   background: {fileID: 1032701736}
-  stage1: {fileID: 135258104688825075}
-  stage2: {fileID: 8124390546212085554}
+  stage1: {fileID: 289141759654346439}
+  stage2: {fileID: 8139213253105016919}
   backgroundColors: []
   swapTime: 2.5
 --- !u!1001 &8955856751531149699

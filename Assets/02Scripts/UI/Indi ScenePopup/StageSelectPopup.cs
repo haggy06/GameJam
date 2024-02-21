@@ -16,9 +16,10 @@ public class StageSelectPopup : PopupBase
     private Image background;
 
     [SerializeField]
-    private Image stage1;
+    private GameObject stage1;
     [SerializeField]
-    private Image stage2;
+    private GameObject stage2;
+
 
     [Space(5)]
 
@@ -33,8 +34,11 @@ public class StageSelectPopup : PopupBase
 
         this.chapterName.text = chapterName;
 
-        stage1.sprite = Resources.Load<Sprite>(Path.Combine("StagePreview", stage1_Scene.ToString()));
-        stage2.sprite = Resources.Load<Sprite>(Path.Combine("StagePreview", stage2_Scene.ToString()));
+        stage1.GetComponent<Image>().sprite = Resources.Load<Sprite>(Path.Combine("StagePreview", stage1_Scene.ToString()));
+        stage1.GetComponent<SceneMoveButton>().ChangeTargetScene(stage1_Scene);
+
+        stage2.GetComponent<Image>().sprite = Resources.Load<Sprite>(Path.Combine("StagePreview", stage2_Scene.ToString()));
+        stage2.GetComponent<SceneMoveButton>().ChangeTargetScene(stage2_Scene);
     }
 
 
