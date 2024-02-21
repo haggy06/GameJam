@@ -99,10 +99,14 @@ public class ButtonNode : MonoBehaviour
 
         anim.SetTrigger(ButtonHash.Pressed);
 
-        Invoke("EventStart", 0.125f);
+        StartCoroutine("EventStart");
     }
-    private void EventStart()
+    private IEnumerator EventStart()
     {
+        yield return YieldInstructionCache.WaitForSecondsRealtime(0.125f);
+
+
+
         anim.SetTrigger(ButtonHash.Selected);
 
         button.onClick.Invoke();

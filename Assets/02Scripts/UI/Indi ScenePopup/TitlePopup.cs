@@ -16,6 +16,16 @@ public class TitlePopup : PopupBase
         base.Awake();
 
         startButton.onClick.AddListener(() => GameManager.Inst.SceneMove(SCENE.StageSelect));
+
+
+        StartCoroutine("SetButtonNode");
+    }
+
+
+    private IEnumerator SetButtonNode()
+    {
+        yield return null;
+
         PopupManager.Inst.ResetButton(firstButton);
     }
 }

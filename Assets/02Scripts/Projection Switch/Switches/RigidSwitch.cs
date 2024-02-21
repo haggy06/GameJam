@@ -25,7 +25,6 @@ public class RigidSwitch : ProjectionBase
     [SerializeField]
     protected float PersDrag = 3f;
 
-    [SerializeField]
     protected int isOnCliff = 0; // Perspective 절벽에 올라 서 있는지 여부
     public int IsOnCliff => isOnCliff;
 

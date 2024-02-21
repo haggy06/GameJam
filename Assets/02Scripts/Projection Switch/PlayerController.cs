@@ -8,6 +8,11 @@ public class PlayerController : RigidSwitch
 
     [SerializeField]
     private bool controllable = true;
+    public bool Controllable
+    {
+        get => controllable;
+        set => controllable = value;
+    }
 
     [Space(5)]
 
@@ -34,7 +39,7 @@ public class PlayerController : RigidSwitch
         footPosition.x = col2D.bounds.center.x;
         footPosition.y = col2D.bounds.min.y;
 
-        isGround = Physics2D.OverlapCircle(footPosition, 0.1f, 1 << 3);
+        isGround = Physics2D.OverlapCircle(footPosition, 0.1f, 1 << (int)LAYER.Ground | 1 << (int)LAYER.Footboard);
     }
 
     private Vector2 tempVec;

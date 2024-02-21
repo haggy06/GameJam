@@ -40,7 +40,7 @@ public class PopupBase : MonoBehaviour
         OnActive();
 
         this.ownerPopup = ownerPopup;
-        LeanTween.value(popup.alpha, 1f, duration).setEase(LeanTweenType.linear).setOnUpdate((float value) => popup.alpha = value).setOnComplete(FadeInFinish);
+        LeanTween.value(popup.alpha, 1f, duration).setEase(LeanTweenType.linear).setOnUpdate((float value) => popup.alpha = value).setOnComplete(FadeInFinish).setIgnoreTimeScale(true); ;
 
         CanvasAct(true);
     }
@@ -48,7 +48,7 @@ public class PopupBase : MonoBehaviour
     {
         OnDeActive();
 
-        LeanTween.value(popup.alpha, 0f, duration).setEase(LeanTweenType.linear).setOnUpdate((float value) => popup.alpha = value).setOnComplete(FadeOutFinish);
+        LeanTween.value(popup.alpha, 0f, duration).setEase(LeanTweenType.linear).setOnUpdate((float value) => popup.alpha = value).setOnComplete(FadeOutFinish).setIgnoreTimeScale(true); ;
 
         CanvasAct(false);
     }
@@ -57,7 +57,7 @@ public class PopupBase : MonoBehaviour
     {
         OnActive();
 
-        LeanTween.value(popup.alpha, 1f, duration).setEase(LeanTweenType.linear).setOnUpdate((float value) => popup.alpha = value).setOnComplete(FadeInFinish);
+        LeanTween.value(popup.alpha, 1f, duration).setEase(LeanTweenType.linear).setOnUpdate((float value) => popup.alpha = value).setOnComplete(FadeInFinish).setIgnoreTimeScale(true); ;
 
         CanvasAct(true);
     }

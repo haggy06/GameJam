@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PopupManager : MonoSingleton<PopupManager>
 {
@@ -10,6 +11,7 @@ public class PopupManager : MonoSingleton<PopupManager>
     private VirtualButton virtualButton;
     public VirtualButton VirtualButton => virtualButton;
 
+    [Space(5)]
 
     #region _Popups_
     // ↓ 이런 식으로 팝업매니저 내의 주요 팝업들을 관리한다(해당되는 팝업을 Inspector 창에서 넣어줘야 함).
@@ -18,8 +20,19 @@ public class PopupManager : MonoSingleton<PopupManager>
     public FadePopup Fade => fade;
 
 
-
+    [SerializeField]
+    private PopupBase escPopup;
+    public PopupBase ESCPopup => escPopup;
     #endregion
+    private void Init() // 캔버스가 생성되었을 때나 씬이 이동되었을 때 등 초기화할 때 사용할 함수
+    {
+        canOpenESC = (SceneManager.GetActiveScene().buildIndex > (int)SCENE.StageSelect); // 현재 씬이 Intro(0), Loading(1), Title(2), StageSelect(3) 씬이 아닐 경우 TRUE
+
+        fade.PopupShow(null);
+        fade.PopupFadeOut();
+
+        escPopup.PopupHide();
+    }
 
     [Space(10)]
 
@@ -53,9 +66,16 @@ public class PopupManager : MonoSingleton<PopupManager>
 
     private void Start()
     {
-        fade.PopupFadeOut();
+        Init();
     }
 
+    [SerializeField]
+    private bool canOpenESC = true;
+    public bool CanOpenESC
+    {
+        get => canOpenESC;
+        set => canOpenESC = value;
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) // ESC를 눌렀을 경우
@@ -63,6 +83,14 @@ public class PopupManager : MonoSingleton<PopupManager>
             if (currentPopup != null && currentPopup.CloseWithESC) // 열려있는 팝업이 있었고 esc로 닫을 수 있을 경우
             {
                 PopupFadeOut();
+            }
+            else if (canOpenESC) // 일시정지가 가능할 경우
+            {
+                PopupFadeIn_Override(escPopup, currentPopup);
+            }
+            else // 일시정지가 불가능할 경우
+            {
+                Debug.Log("일시정지를 할 수 없습니다.");
             }
         }
 
@@ -80,18 +108,19 @@ public class PopupManager : MonoSingleton<PopupManager>
         }
     }
 
-    public void NextSceneLoaded()
+    public void NewSceneLoaded()
     {
-        Debug.Log("팝업 매니저 리셋");
-
-        fade.PopupShow(null);
-        fade.PopupFadeOut();
+        Init();
     }
 
     #region _Popup Fade In/Out Logic_
     [SerializeField]
     private PopupBase currentPopup;
     public PopupBase CurrentPopup => currentPopup;
+    public void CurPopupReset()
+    {
+        currentPopup = null;
+    }
     public void PopupFadeIn(PopupBase openPopup, PopupBase ownerPopup)
     {
         if (currentPopup == openPopup) // 열 팝업이 맨 위에 열려 있을 경우
@@ -105,6 +134,18 @@ public class PopupManager : MonoSingleton<PopupManager>
                 currentPopup.PopupFadeOut();
             }
 
+            currentPopup = openPopup;
+            currentPopup.PopupFadeIn(ownerPopup);
+        }
+    }
+    public void PopupFadeIn_Override(PopupBase openPopup, PopupBase ownerPopup)
+    {
+        if (currentPopup == openPopup) // 열 팝업이 맨 위에 열려 있을 경우
+        {
+            Debug.Log("선택된 팝업이 이미 열려 있습니다");
+        }
+        else // 열 팝업이 맨 위에 열려 있지 않을 경우
+        {
             currentPopup = openPopup;
             currentPopup.PopupFadeIn(ownerPopup);
         }

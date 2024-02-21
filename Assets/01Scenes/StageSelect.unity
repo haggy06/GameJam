@@ -1035,11 +1035,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8955856750213555882, guid: 2f60359323deddb4bb7715cd33d7572c, type: 3}
       propertyPath: stage1
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8955856750213555882, guid: 2f60359323deddb4bb7715cd33d7572c, type: 3}
       propertyPath: stage2
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8955856750213555882, guid: 2f60359323deddb4bb7715cd33d7572c, type: 3}
       propertyPath: chapterName
@@ -1538,7 +1538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e7cc78fbbd01da4a935067369236d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstButton: {fileID: 0}
+  firstButton: {fileID: 8473471634106342926}
   closeWithESC: 1
   duration: 0.25
   ownerPopup: {fileID: 0}
@@ -1649,7 +1649,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8955856750213555882, guid: 2f60359323deddb4bb7715cd33d7572c, type: 3}
       propertyPath: stage2
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8955856750213555882, guid: 2f60359323deddb4bb7715cd33d7572c, type: 3}
       propertyPath: chapterPopup

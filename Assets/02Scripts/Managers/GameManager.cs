@@ -4,17 +4,6 @@ using UnityEngine;
 
 using UnityEngine.SceneManagement;
 
-public enum SCENE
-{
-    Intro,
-    Loading,
-    Title,
-    StageSelect,
-    Stage1_1,
-    Stage1_2,
-
-}
-
 public class GameManager : MonoSingleton<GameManager>
 {
     [SerializeField]
@@ -33,6 +22,11 @@ public class GameManager : MonoSingleton<GameManager>
     }
     public void GoLoadingScene()
     {
+        if (Time.timeScale == 0f) // 일시정지가 되어 있었을 경우
+        {
+            Time.timeScale = 1f;
+        }
+
         SceneManager.LoadScene((int)SCENE.Loading);
     }
     public void GoNextScene()
@@ -44,15 +38,15 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void SceneLoadComplete()
     {
-        StartCoroutine("NextSceneLoaded");
+        StartCoroutine("NewSceneLoaded");
     }
-    private IEnumerator NextSceneLoaded()
+    private IEnumerator NewSceneLoaded()
     {
         yield return null;
 
         Debug.Log("새로운 씬 실행 : " + SceneManager.GetActiveScene().buildIndex);
 
-        PopupManager.Inst.NextSceneLoaded();
+        PopupManager.Inst.NewSceneLoaded();
 
         if (SceneManager.GetActiveScene().buildIndex > 3) // 현재 씬이 Intro(0), Loading(1), Title(2), StageSelect(3) 씬이 아닐 경우
         {
@@ -66,6 +60,29 @@ public class GameManager : MonoSingleton<GameManager>
             else
             {
                 Debug.LogError("현재 씬에 플레이어가 없습니다");
+            }
+        }
+    }
+
+
+    public void THEWORLD(bool isOn)
+    {
+        if (isOn) // 일시정지 ON
+        {
+            Time.timeScale = 0f;
+
+            if (CurPlayer != null)
+            {
+                CurPlayer.Controllable = false;
+            }
+        }
+        else // 일시정지 OFF
+        {
+            Time.timeScale = 1f;
+
+            if (CurPlayer != null)
+            {
+                CurPlayer.Controllable = true;
             }
         }
     }

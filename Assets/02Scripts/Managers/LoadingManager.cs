@@ -13,6 +13,9 @@ public class LoadingManager : MonoBehaviour
     {
         PopupManager.Inst.Fade.PopupHide();
 
+        PopupManager.Inst.NewSceneLoaded();
+        ProjectionManager.Inst.ProjectionListClear();
+
         StartCoroutine("LoadAsyncScene");
     }
 

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Cliff
   - FallingZone
+  - Interactable
   layers:
   - Default
   - TransparentFX
@@ -13,11 +14,11 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Standable Entity
+  - Unstandable Entity
+  - Footboard
+  - Sensor
+  - Sensor Target
   - 
   - 
   - 

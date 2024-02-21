@@ -25,12 +25,12 @@ public class ProjectionManager : MonoSingleton<ProjectionManager>
     public bool Orthographic => orthographic;
 
     [SerializeField]
-    private List<ProjectionBase> rigidSwitches = new List<ProjectionBase>();
-    public List<ProjectionBase> RigidSwitches => rigidSwitches;
+    private List<ProjectionBase> projections = new List<ProjectionBase>();
+    public List<ProjectionBase> Projections => projections;
 
     public void InputList(ProjectionBase projBase)
     {
-        rigidSwitches.Add(projBase);
+        projections.Add(projBase);
     }
 
     [SerializeField]
@@ -42,28 +42,31 @@ public class ProjectionManager : MonoSingleton<ProjectionManager>
         {
             orthographic = false;
 
-            for (int i = 0; i < rigidSwitches.Count; i++)
+            for (int i = 0; i < projections.Count; i++)
             {
-                if (rigidSwitches[i].Changeable)
-                    rigidSwitches[i].ToPerspStart();
+                if (projections[i].Changeable)
+                    projections[i].ToPerspStart();
             }
-
+            Invoke("ToPresp", duration);
+            /*
             //LeanTween.moveZ(backgroundObj, 0f, duration).setEase(LeanTweenType.easeOutCirc);
             LeanTween.scaleZ(mapObj, 1f, duration).setEase(leanType).setOnComplete(ToPresp);
 
             LeanTween.move(cameraObj, targetPosition, duration).setEase(leanType);
             LeanTween.rotate(cameraObj, targetRotation, duration).setEase(leanType);
+            */
         }
         else // 현재 Perspective 시점이었을 경우
         {
             orthographic = true;
 
-            for (int i = 0; i < rigidSwitches.Count; i++)
+            for (int i = 0; i < projections.Count; i++)
             {
-                if (rigidSwitches[i].Changeable)
-                    rigidSwitches[i].ToOrthoStart();
+                if (projections[i].Changeable)
+                    projections[i].ToOrthoStart();
             }
-
+            Invoke("ToOrtho", duration);
+            /*
             //LeanTween.moveZ(backgroundObj, -1f, duration).setEase(LeanTweenType.easeOutCirc);
             LeanTween.scaleZ(mapObj, 0.0001f, duration).setEase(leanType).setOnComplete(ToOrtho);
 
@@ -72,23 +75,30 @@ public class ProjectionManager : MonoSingleton<ProjectionManager>
 
 
             LeanTween.rotate(cameraObj, Vector3.zero, duration).setEase(leanType);
+            */
         }
     }
 
     private void ToOrtho()
     {
-        for (int i = 0; i < rigidSwitches.Count; i++)
+        for (int i = 0; i < projections.Count; i++)
         {
-            if (rigidSwitches[i].Changeable)
-                rigidSwitches[i].ToOrthoComplete();
+            if (projections[i].Changeable)
+                projections[i].ToOrthoComplete();
         }
     }
     private void ToPresp()
     {
-        for (int i = 0; i < rigidSwitches.Count; i++)
+        for (int i = 0; i < projections.Count; i++)
         {
-            if (rigidSwitches[i].Changeable)
-                rigidSwitches[i].ToPerspComplete();
+            if (projections[i].Changeable)
+                projections[i].ToPerspComplete();
         }
+    }
+
+
+    public void ProjectionListClear()
+    {
+        projections.Clear();
     }
 }
