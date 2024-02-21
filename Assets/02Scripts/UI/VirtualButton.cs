@@ -8,7 +8,15 @@ public class VirtualButton : ButtonNode
 {
     public void SetNode(ButtonNode newNode)
     {
-        node_Up = node_Right = node_Left = node_Down = newNode;
+        node_Up = newNode;
+        node_Right = newNode;
+        node_Left = newNode;
+        node_Down = newNode;
+
+        if (newNode != null)
+        {
+            Debug.Log(newNode.gameObject.name + "으로 노드 설정 완료");
+        }
     }
 
     protected override void Awake()

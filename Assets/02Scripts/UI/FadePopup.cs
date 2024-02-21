@@ -36,4 +36,8 @@ public class FadePopup : PopupBase
 
         Debug.Log("페이드 이벤트 실행");
     }
+
+
+    protected override void OnActive()    {    }
+    protected override void OnDeActive()    {    }
 }

@@ -51,6 +51,11 @@ public class PopupManager : MonoSingleton<PopupManager>
         virtualButton.SetNode(firstNode);
     }
 
+    private void Start()
+    {
+        fade.PopupFadeOut();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) // ESC를 눌렀을 경우
