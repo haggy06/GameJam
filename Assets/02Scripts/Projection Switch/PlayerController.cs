@@ -35,10 +35,29 @@ public class PlayerController : RigidSwitch
     private float terminalVelocity = -20f;
     public float TerminalVelocity => terminalVelocity;
 
+    [SerializeField]
+    private Animator anim;
+    public Animator Anim => anim;
 
     private Vector2 moveDir;
 
     private bool isGround = false;
+    private bool IsGround
+    {
+        get => isGround;
+        set
+        {
+            if (isGround != value)
+            {
+                isGround = value;
+
+                if (anim != null)
+                {
+                    anim.SetBool(PlayerHash.IsGround, isGround);
+                }
+            }
+        }
+    }
 
     private Collider2D col2D;
     protected override void Awake()
@@ -55,7 +74,10 @@ public class PlayerController : RigidSwitch
         footPosition.x = col2D.bounds.center.x;
         footPosition.y = col2D.bounds.min.y;
 
-        isGround = Physics2D.OverlapCircle(footPosition, 0.1f, 1 << (int)LAYER.Ground | 1 << (int)LAYER.Footboard);
+        if (ProjectionManager.Inst.Orthographic)
+        {
+            IsGround = Physics2D.OverlapCircle(footPosition, 0.1f, 1 << (int)LAYER.Ground | 1 << (int)LAYER.Footboard);
+        }
 
         if (rigid2D.velocity.y < terminalVelocity)
         {
@@ -82,6 +104,24 @@ public class PlayerController : RigidSwitch
     private Vector2 tempVec;
 
     private float rotateValue;
+
+    private bool isMove = false;
+    private bool IsMove
+    {
+        get => isMove;
+        set
+        {
+            if (isMove != value)
+            {
+                isMove = value;
+
+                if (anim != null)
+                {
+                    anim.SetBool(PlayerHash.IsMove, isMove);
+                }
+            }
+        }
+    }
     private void Update()
     {
         if (controllable)
@@ -104,21 +144,25 @@ public class PlayerController : RigidSwitch
             #region _Move Logic_
             if (ProjectionManager.Inst.Orthographic) // ÇÃ·§Æ÷¸Ó »óÅÂ
             {
-                #region _Move Logic_
                 moveDir.x = Input.GetAxisRaw("Horizontal");
 
                 if (moveDir.x != 0f)
                 {
+                    IsMove = true;
+
                     rotateValue = moveDir.x > 0f ? 0f : 180f;
 
                     transform.GetChild(0).localEulerAngles = Vector3.up * rotateValue;
+                }
+                else
+                {
+                    IsMove = false;
                 }
 
                 tempVec.x = moveDir.x * moveSpeed;
                 tempVec.y = rigid2D.velocity.y;
 
                 rigid2D.velocity = tempVec;
-                #endregion
 
                 if (isGround && Input.GetKeyDown(KeyCode.Space))
                 {
@@ -126,6 +170,11 @@ public class PlayerController : RigidSwitch
                     tempVec.y = jumpPower;
 
                     rigid2D.velocity = tempVec;
+
+                    if (anim != null)
+                    {
+                        anim.SetTrigger(PlayerHash.Jump);
+                    }
                 }
             }
             else // Å¾ºä »óÅÂ
@@ -135,9 +184,15 @@ public class PlayerController : RigidSwitch
 
                 if (moveDir != Vector2.zero)
                 {
+                    IsMove = true;
+
                     rotateValue = -(Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg);
 
                     transform.GetChild(0).localEulerAngles = Vector3.up * rotateValue;
+                }
+                else
+                {
+                    IsMove = false;
                 }
 
                 rigid2D.velocity = moveDir * moveSpeed;
@@ -170,6 +225,7 @@ public class PlayerController : RigidSwitch
 
         controllable = false;
 
+        IsGround = false;
         /*
         transform.GetChild(1).gameObject.SetActive(true);
 
@@ -213,6 +269,7 @@ public class PlayerController : RigidSwitch
         base.ToPerspStart();
 
         controllable = false;
+        IsGround = false;
 
         /*
         //transform.GetChild(1).gameObject.SetActive(false);
@@ -220,11 +277,12 @@ public class PlayerController : RigidSwitch
         LeanTween.value(3f, 0f, ProjectionManager.Inst.Duration).setOnUpdate((float value) => LightUpdate(value));
         LeanTween.rotateX(transform.GetChild(1).gameObject, 60f, ProjectionManager.Inst.Duration).setEase(ProjectionManager.Inst.LeanType);
         */
-        
+
     }
     public override void ToPerspComplete()
     {
         controllable = true;
+        IsGround = true;
 
         base.ToPerspComplete();
     }
