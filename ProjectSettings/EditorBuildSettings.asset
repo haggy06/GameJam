@@ -21,9 +21,9 @@ EditorBuildSettings:
     path: Assets/01Scenes/Test/Test4.unity
     guid: 05baa5c2205697346ab6cedfcf987b8f
   - enabled: 1
-    path: Assets/01Scenes/Stages/Stage1_1.unity
-    guid: d81809ba9826b1a4bbf3eb239ff66303
+    path: Assets/01Scenes/Stages/Stage1.unity
+    guid: c643300abac052d4e9bf7b554f0aa787
   - enabled: 1
-    path: Assets/01Scenes/Stages/Stage1_2.unity
-    guid: c9ba5409371115a478ce461457d6a408
+    path: Assets/01Scenes/Stages/Stage2.unity
+    guid: 0f4e49a3774b24a46ab95180e191c2f1
   m_configObjects: {}

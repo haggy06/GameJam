@@ -779,7 +779,7 @@ MonoBehaviour:
   - {r: 1, g: 0.627451, b: 0.85098046, a: 1}
   - {r: 1, g: 0.5647059, b: 0.5803922, a: 1}
   - {r: 1, g: 0.8196079, b: 0.57254905, a: 1}
-  stage: 4
+  stage: 6
   chapterIndex: 1
   chapterSelectPopup: {fileID: 1353168140}
 --- !u!95 &1504611020
@@ -1470,7 +1470,7 @@ MonoBehaviour:
   - {r: 0.36862746, g: 0.83921576, b: 0.94117653, a: 1}
   - {r: 0.5411765, g: 0.47450984, b: 1, a: 1}
   - {r: 1, g: 0.53333336, b: 0.9333334, a: 1}
-  stage: 4
+  stage: 5
   chapterIndex: 0
   chapterSelectPopup: {fileID: 1353168140}
 --- !u!95 &5362143893025513809
