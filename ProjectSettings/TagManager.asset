@@ -7,6 +7,8 @@ TagManager:
   - Cliff
   - FallingZone
   - Interactable
+  - FootPosition
+  - InteractableEntity
   layers:
   - Default
   - TransparentFX

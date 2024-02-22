@@ -13,7 +13,6 @@ public class ProjectionBase : MonoBehaviour
         ProjectionManager.Inst.InputList(this);
     }
 
-
     public virtual void ToOrthoStart()
     {
 
@@ -22,7 +21,6 @@ public class ProjectionBase : MonoBehaviour
     {
 
     }
-
 
     public virtual void ToOrthoComplete()
     {

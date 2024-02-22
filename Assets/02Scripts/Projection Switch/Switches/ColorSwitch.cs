@@ -5,10 +5,21 @@ using UnityEngine;
 public class ColorSwitch : ProjectionBase
 {
     [SerializeField]
-    private Color orthoColor;
-
-    [SerializeField]
     private Color perspColor;
+    public Color PerspColor
+    {
+        get => perspColor;
+        set => perspColor = value;
+    }
+    [SerializeField]
+    private Color orthoColor;
+    public Color OrthoColor
+    {
+        get => orthoColor;
+        set => orthoColor = value;
+    }
+
+    
 
     public override void ToOrthoStart()
     {

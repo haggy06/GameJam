@@ -18,8 +18,18 @@ public class PlayerController : RigidSwitch
 
     [SerializeField]
     private float moveSpeed = 5f;
+    public float MoveSpeed => moveSpeed;
+    
+    
     [SerializeField]
     private float jumpPower = 10f;
+    public float JumpPower => jumpPower;
+
+
+    [SerializeField]
+    private float terminalVelocity = -20f;
+    public float TerminalVelocity => terminalVelocity;
+
 
     private Vector2 moveDir;
 
@@ -34,12 +44,34 @@ public class PlayerController : RigidSwitch
     }
 
     private Vector2 footPosition;
+    private Vector2 terminalVelo;
     private void FixedUpdate()
     {
         footPosition.x = col2D.bounds.center.x;
         footPosition.y = col2D.bounds.min.y;
 
         isGround = Physics2D.OverlapCircle(footPosition, 0.1f, 1 << (int)LAYER.Ground | 1 << (int)LAYER.Footboard);
+
+        if (rigid2D.velocity.y < terminalVelocity)
+        {
+            terminalVelo.x = rigid2D.velocity.x;
+            terminalVelo.y = terminalVelocity;
+
+            rigid2D.velocity = terminalVelo;
+        }
+    }
+
+    public void PhysicalChange(float newMoveSpeed, float newJumpPower, float newTerminalVelocity, bool changeOrBack)
+    {
+        moveSpeed = newMoveSpeed;
+        jumpPower = newJumpPower;
+        terminalVelocity = newTerminalVelocity;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(footPosition, 0.1f);
     }
 
     private Vector2 tempVec;
@@ -49,6 +81,14 @@ public class PlayerController : RigidSwitch
     {
         if (controllable)
         {
+            #region _Interact Logic_
+            if (curInteract != null && Input.GetKeyDown(KeyCode.A))
+            {
+                curInteract.Interact();
+            }
+            #endregion
+
+            #region _Move Logic_
             if (ProjectionManager.Inst.Orthographic) // 플랫포머 상태
             {
                 #region _Move Logic_
@@ -89,12 +129,14 @@ public class PlayerController : RigidSwitch
 
                 rigid2D.velocity = moveDir * moveSpeed;
             }
+            #endregion
 
+            #region _Projection Change Logic_
             if (Input.GetKeyDown(KeyCode.LeftShift)) // 시점 전환
             {
                 ProjectionManager.Inst.ProjectionChange();
-                
             }
+            #endregion
         }
     }
 
@@ -167,5 +209,28 @@ public class PlayerController : RigidSwitch
         controllable = true;
 
         base.ToPerspComplete();
+    }
+
+
+    private InteractBase curInteract;
+    protected override void OnTriggerEnter2D_Override(Collider2D collision)
+    {
+        if (collision.CompareTag("InteractableEntity"))
+        {
+            if ((collision.TryGetComponent<InteractBase>(out InteractBase interact)))
+            {
+                curInteract = interact;
+            }
+        }
+    }
+    protected override void OnTriggerExit2D_Override(Collider2D collision)
+    {
+        if (collision.CompareTag("InteractableEntity"))
+        {
+            if (collision.TryGetComponent<InteractBase>(out InteractBase interact))
+            {
+                curInteract = null;
+            }
+        }
     }
 }

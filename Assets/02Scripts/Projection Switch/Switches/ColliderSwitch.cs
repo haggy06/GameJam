@@ -6,8 +6,19 @@ public class ColliderSwitch : ProjectionBase
 {
     [SerializeField]
     private Collider2D perspCollider;
+    public Collider2D PerspCollider
+    {
+        get => perspCollider;
+        set => perspCollider = value;
+    }
+
     [SerializeField]
     private Collider2D orthoCollider;
+    public Collider2D OrthoCollider
+    {
+        get => orthoCollider;
+        set => orthoCollider = value;
+    }
 
 
     public override void ToOrthoStart()

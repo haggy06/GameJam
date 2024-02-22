@@ -38,25 +38,13 @@ public class ProjectionManager : MonoSingleton<ProjectionManager>
     public LeanTweenType LeanType => leanType;
     public void ProjectionChange()
     {
-        if (orthographic) // 현재 Orthographic 시점이었을 경우
-        {
-            orthographic = false;
+        orthographic = !orthographic;
 
-            for (int i = 0; i < projections.Count; i++)
-            {
-                if (projections[i].Changeable)
-                    projections[i].ToPerspStart();
-            }
-            Invoke("ToPresp", duration);
-            /*
-            //LeanTween.moveZ(backgroundObj, 0f, duration).setEase(LeanTweenType.easeOutCirc);
-            LeanTween.scaleZ(mapObj, 1f, duration).setEase(leanType).setOnComplete(ToPresp);
-
-            LeanTween.move(cameraObj, targetPosition, duration).setEase(leanType);
-            LeanTween.rotate(cameraObj, targetRotation, duration).setEase(leanType);
-            */
-        }
-        else // 현재 Perspective 시점이었을 경우
+        SetProjection(orthographic);
+    }
+    public void SetProjection(bool ortho)
+    {
+        if (ortho)
         {
             orthographic = true;
 
@@ -75,6 +63,24 @@ public class ProjectionManager : MonoSingleton<ProjectionManager>
 
 
             LeanTween.rotate(cameraObj, Vector3.zero, duration).setEase(leanType);
+            */
+        }
+        else
+        {
+            orthographic = false;
+
+            for (int i = 0; i < projections.Count; i++)
+            {
+                if (projections[i].Changeable)
+                    projections[i].ToPerspStart();
+            }
+            Invoke("ToPresp", duration);
+            /*
+            //LeanTween.moveZ(backgroundObj, 0f, duration).setEase(LeanTweenType.easeOutCirc);
+            LeanTween.scaleZ(mapObj, 1f, duration).setEase(leanType).setOnComplete(ToPresp);
+
+            LeanTween.move(cameraObj, targetPosition, duration).setEase(leanType);
+            LeanTween.rotate(cameraObj, targetRotation, duration).setEase(leanType);
             */
         }
     }

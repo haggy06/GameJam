@@ -9,9 +9,8 @@ public class MapProjectionInfo : MonoBehaviour
 
     private void Start()
     {
-        if (ProjectionManager.Inst.Orthographic != orthographic) // ProjectionManager와 맵의 Orthographic이 다를 경우
-        {
-            ProjectionManager.Inst.ProjectionChange();
-        }
+        ProjectionManager.Inst.SetProjection(orthographic);
+
+        Debug.Log("초기설정) Orthographic = " + orthographic);
     }
 }
