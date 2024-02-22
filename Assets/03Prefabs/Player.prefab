@@ -57,7 +57,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5286311700677280871}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -95,7 +95,7 @@ GameObject:
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -150,7 +150,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.075, y: 0.75}
+  m_Offset: {x: 0.075, y: -0.06}
   m_Size: {x: 0.45, y: 1.45}
   m_Direction: 0
 --- !u!114 &5286311701197324476
@@ -171,7 +171,7 @@ MonoBehaviour:
   isOnCliff: 0
   curInteract: {fileID: 0}
   controllable: 1
-  moveSpeed: 3
+  moveSpeed: 4
   jumpPower: 12
   terminalVelocity: -20
   anim: {fileID: 5286311699714085965}
@@ -204,7 +204,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 44eeda1bd2b875b4e97071b6a84329e5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.81
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 44eeda1bd2b875b4e97071b6a84329e5, type: 3}
       propertyPath: m_LocalPosition.z

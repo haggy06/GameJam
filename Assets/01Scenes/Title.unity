@@ -742,7 +742,6 @@ MonoBehaviour:
   duration: 0.5
   ownerPopup: {fileID: 0}
   cutScenePopup: {fileID: 1647748155}
-  controlManualPopup: {fileID: 0}
 --- !u!225 &834562769
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1179,7 +1178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstButton: {fileID: 0}
-  closeWithESC: 1
+  closeWithESC: 0
   duration: 0.5
   ownerPopup: {fileID: 0}
   cutSceneIndex: 0
