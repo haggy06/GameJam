@@ -59,13 +59,19 @@ public class MagneticField : MonoBehaviour
 
     public void FieldON(bool b)
     {
+        isFieldON = b;
+
         if (b)
         {
             GetComponent<ColorSwitch>().OrthoColor = fieldOnColor;
+
+            GetComponent<ColorSwitch>().ToOrthoStart();
         }
         else
         {
             GetComponent<ColorSwitch>().OrthoColor = fieldOffColor;
+
+            GetComponent<ColorSwitch>().ToOrthoStart();
         }
     }
 }

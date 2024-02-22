@@ -8,6 +8,8 @@ public class Footboard : MonoBehaviour
     {
         if (collision.CompareTag("FootPosition"))
         {
+            Debug.Log(collision.gameObject.name);
+
             if (collision.transform.parent != null) // 쏘유 해버 마더
             {
                 if (collision.transform.parent.TryGetComponent<Rigidbody2D>(out Rigidbody2D rigid2D)) // 닿은 오브젝트의 부모에게 Rigidbody2D가 있었을 경우
@@ -33,7 +35,6 @@ public class Footboard : MonoBehaviour
                 }
             }
         }
-        
     }
 
     private void OnTriggerExit2D(Collider2D collision)

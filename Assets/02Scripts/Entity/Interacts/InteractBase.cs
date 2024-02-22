@@ -5,6 +5,11 @@ using UnityEngine;
 public class InteractBase : MonoBehaviour
 {
     [SerializeField]
+    private float requireInteractTime = 1f;
+    public float RequireInteractTime => requireInteractTime;
+
+
+    [SerializeField]
     protected bool interactable = true;
     public bool Interactable
     {

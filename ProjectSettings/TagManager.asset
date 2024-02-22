@@ -19,9 +19,9 @@ TagManager:
   - Standable Entity
   - Unstandable Entity
   - Footboard
-  - Sensor
-  - Sensor Target
-  - 
+  - Foot Sensor
+  - Entity Sensor
+  - Foot
   - 
   - 
   - 

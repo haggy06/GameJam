@@ -23,27 +23,80 @@ public class ChapterSelectPopup : PopupBase
     {
         base.Awake();
 
-        GetComponent<Button>().onClick.AddListener(ChapterButtonEvent);
+        //GetComponent<Button>().onClick.AddListener(ChapterButtonEvent);
 
 
-        chapterArr.localPosition = Vector3.right * (((curChapterIndex) * -400f) - 175f);
+        chapterArr.localPosition = Vector3.right * (((curChapterIndex + 1) * -550f) - 250f);
         ChapterHighlight();
 
-
-        PopupManager.Inst.PopupFadeIn(this, null);
+        PopupManager.Inst.ResetButton(firstButton);
     }
+
+    public void AimToIndex(int index)
+    {
+        LeanTween.moveLocalX(chapterArr.gameObject, ((index) * -550f) - 250f, lerpTime).setEase(LeanTweenType.easeOutQuart);
+
+        curChapterIndex = index;
+
+        ChapterHighlight();
+    }
+
     private void ChapterHighlight()
     {
-        if (!chapterArr.GetChild(curChapterIndex).TryGetComponent<ChapterInfo>(out curChapter))
+        if (curChapterIndex >=0 && curChapterIndex < chapterArr.childCount)
         {
-            Debug.Log("ChapterInfo 참조 실패");
-        }
-        chapterName.text = curChapter.ChapterName;
+            if (!chapterArr.GetChild(curChapterIndex).TryGetComponent<ChapterButton>(out curChapter))
+            {
+                Debug.Log("ChapterInfo 참조 실패");
+            }
 
-        curChapter.ChapterHighlighted();
+            chapterName.text = curChapter.ChapterName;
+            this.backgroundColors = curChapter.BackgroundColors;
+        }
     }
 
+    [SerializeField]
+    private Color[] backgroundColors;
+    [SerializeField]
+    private Image background;
+    [SerializeField]
+    private float swapTime = 2f;
 
+
+    private void Start()
+    {
+        BackgroundColorChange(1);
+
+        PopupManager.Inst.ResetButton(firstButton);
+        Invoke("ButtonSet", 0.02f);  
+    }
+    private void ButtonSet()
+    {
+        PopupManager.Inst.PopupFadeIn(this, null);
+    }
+    private void BackgroundColorChange(int colorIndex)
+    {
+        LeanTween.value(background.gameObject, background.color, backgroundColors[colorIndex], swapTime).setOnUpdate((Color value) => background.color = value).setOnComplete(() => BackgroundColorChange(ColorIndexChange(colorIndex)));
+    }
+    private int ColorIndexChange(int i)
+    {
+        i++;
+
+        if (i >= 3) // 컬러 인덱스를 초과했을 경우
+        {
+            Debug.Log("컬러 인덱스 변경 : " + 0);
+
+            return 0;
+        }
+        else
+        {
+            Debug.Log("컬러 인덱스 변경 : " + i);
+
+            return i;
+        }
+    }
+
+    /*
     private void ChapterButtonEvent()
     {
         if (curChapter != null)
@@ -51,15 +104,16 @@ public class ChapterSelectPopup : PopupBase
             curChapter.ChapterSelect();
         }
     }
+    */
 
     [SerializeField]
     private int curChapterIndex = 0;
     private int input;
 
     [SerializeField]
-    private ChapterInfo curChapter;
+    private ChapterButton curChapter;
     private void Update()
-    {
+    {/*
         
         if (controllable)
         {
@@ -72,7 +126,7 @@ public class ChapterSelectPopup : PopupBase
 
                 if (curChapterIndex < chapterArr.childCount && curChapterIndex >= 0) // 이동했을 때 인덱스오버가 안 날 경우
                 {
-                    LeanTween.moveLocalX(chapterArr.gameObject, ((curChapterIndex) * -400f) - 175f, lerpTime).setEase(LeanTweenType.easeOutQuart);
+                    LeanTween.moveLocalX(chapterArr.gameObject, ((curChapterIndex) * -550f) -250f, lerpTime).setEase(LeanTweenType.easeOutQuart);
 
                     ChapterHighlight();
                 }
@@ -81,11 +135,13 @@ public class ChapterSelectPopup : PopupBase
                     curChapterIndex -= input;
                 }
             }
+            
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 ChapterButtonEvent();
-            }
-        }
+            } 
+            
+        }*/
     }
 
     private bool controllable;

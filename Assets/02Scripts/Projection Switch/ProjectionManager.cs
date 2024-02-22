@@ -50,8 +50,9 @@ public class ProjectionManager : MonoSingleton<ProjectionManager>
 
             for (int i = 0; i < projections.Count; i++)
             {
-                if (projections[i].Changeable)
-                    projections[i].ToOrthoStart();
+                if (projections[i] != null)
+                    if (projections[i].Changeable)
+                        projections[i].ToOrthoStart();
             }
             Invoke("ToOrtho", duration);
             /*
@@ -71,8 +72,9 @@ public class ProjectionManager : MonoSingleton<ProjectionManager>
 
             for (int i = 0; i < projections.Count; i++)
             {
-                if (projections[i].Changeable)
-                    projections[i].ToPerspStart();
+                if (projections[i] != null)
+                    if (projections[i].Changeable)
+                        projections[i].ToPerspStart();
             }
             Invoke("ToPresp", duration);
             /*
@@ -89,16 +91,18 @@ public class ProjectionManager : MonoSingleton<ProjectionManager>
     {
         for (int i = 0; i < projections.Count; i++)
         {
-            if (projections[i].Changeable)
-                projections[i].ToOrthoComplete();
+            if (projections[i] != null)
+                if (projections[i].Changeable)
+                    projections[i].ToOrthoComplete();
         }
     }
     private void ToPresp()
     {
         for (int i = 0; i < projections.Count; i++)
         {
-            if (projections[i].Changeable)
-                projections[i].ToPerspComplete();
+            if (projections[i] != null)
+                if (projections[i].Changeable)
+                    projections[i].ToPerspComplete();
         }
     }
 

@@ -14,6 +14,8 @@ public class PopupManager : MonoSingleton<PopupManager>
     [Space(5)]
 
     #region _Popups_
+    [Header("Popups")]
+
     // ↓ 이런 식으로 팝업매니저 내의 주요 팝업들을 관리한다(해당되는 팝업을 Inspector 창에서 넣어줘야 함).
     [SerializeField]
     private FadePopup fade;
@@ -23,6 +25,16 @@ public class PopupManager : MonoSingleton<PopupManager>
     [SerializeField]
     private PopupBase escPopup;
     public PopupBase ESCPopup => escPopup;
+
+
+    [SerializeField]
+    private InteractPopup interactPopup;
+    public InteractPopup Interact_Popup => interactPopup;
+
+
+    [SerializeField]
+    private ManualPopup manualPopup;
+    public ManualPopup Manual_Popup => manualPopup;
     #endregion
     private void Init() // 캔버스가 생성되었을 때나 씬이 이동되었을 때 등 초기화할 때 사용할 함수
     {
@@ -32,6 +44,10 @@ public class PopupManager : MonoSingleton<PopupManager>
         fade.PopupFadeOut();
 
         escPopup.PopupHide();
+
+        interactPopup.PopupHide();
+
+        manualPopup.PopupHide();
     }
 
     [Space(10)]

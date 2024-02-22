@@ -15,7 +15,8 @@ public class ChapterInfo : MonoBehaviour
 
     [SerializeField]
     private Color[] backgroundColors = new Color[3];
-    
+    public Color[] BackgroundColors => backgroundColors;
+
     [Space(5)]
 
     [SerializeField]

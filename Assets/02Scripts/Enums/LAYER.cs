@@ -9,7 +9,8 @@ public enum LAYER
     Standable_Entity,
     Unstandable_Entity,
     Footboard,
-    Sensor,
-    Sensor_Target,
+    Foot_Sensor,
+    Entity_Sensor,
+    Foot,
 
 }

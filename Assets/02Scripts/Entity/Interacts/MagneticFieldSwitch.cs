@@ -14,10 +14,26 @@ public class MagneticFieldSwitch : InteractBase
     [SerializeField]
     private bool isOnSwitch = true;
 
+    [SerializeField]
+    private bool oneUse = true;
+
     public override void Interact()
     {
-        base.Interact();
+        Debug.Log("자기장 상호작용");
 
-        magneticField.FieldON(true);
+        magneticField.FieldON(isOnSwitch);
+
+        if (oneUse)
+        {
+            interactable = false;
+
+            Destroy(GetComponent<ColorSwitch>());
+
+            LeanTween.alpha(gameObject, 0f, 0.25f).setEase(LeanTweenType.easeOutCirc);
+        }
+        else
+        {
+            isOnSwitch = !isOnSwitch;
+        }
     }
 }

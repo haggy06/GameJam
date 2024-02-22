@@ -1176,6 +1176,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1626721090}
     m_Modifications:
+    - target: {fileID: 1823286888, guid: 2a1b9663635b9104caa474b6d08091fd, type: 3}
+      propertyPath: m_Name
+      value: Foot Sensor Target
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823286888, guid: 2a1b9663635b9104caa474b6d08091fd, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 5756572791960051346, guid: 2a1b9663635b9104caa474b6d08091fd, type: 3}
       propertyPath: m_Name
       value: Flower Trampoline
@@ -1842,7 +1850,10 @@ GameObject:
   - component: {fileID: 945183913}
   - component: {fileID: 945183912}
   - component: {fileID: 945183914}
-  m_Layer: 0
+  - component: {fileID: 945183917}
+  - component: {fileID: 945183916}
+  - component: {fileID: 945183915}
+  m_Layer: 10
   m_Name: Portal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1891,7 +1902,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -1709786006, guid: 1c1ea9aa0fad3f2459928dda25577feb, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1909,7 +1920,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 945183911}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.94, y: 8.03, z: -1}
+  m_LocalPosition: {x: -13.27, y: -5.01, z: -1}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1930,6 +1941,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   perspColor: {r: 1, g: 1, b: 1, a: 0}
   orthoColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!70 &945183915
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945183911}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 12, y: 20}
+  m_Direction: 0
+--- !u!114 &945183916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945183911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4645da69c90e3b439b7d57250da25bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  perspCollider: {fileID: 0}
+  orthoCollider: {fileID: 945183915}
+--- !u!114 &945183917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945183911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46ea552109408e74f8685424925d1065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requireInteractTime: 2
+  interactable: 1
+  targetScene: 3
 --- !u!1 &948281823
 GameObject:
   m_ObjectHideFlags: 0
@@ -2160,7 +2216,8 @@ GameObject:
   - component: {fileID: 1117528033}
   - component: {fileID: 1117528032}
   - component: {fileID: 1117528035}
-  m_Layer: 9
+  - component: {fileID: 1117528036}
+  m_Layer: 10
   m_Name: Magnetic Switch
   m_TagString: InteractableEntity
   m_Icon: {fileID: 0}
@@ -2194,8 +2251,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f069c83df2691994ab637ed1555e42de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perspColor: {r: 1, g: 1, b: 1, a: 0}
-  orthoColor: {r: 1, g: 1, b: 1, a: 1}
+  perspColor: {r: 1, g: 0, b: 0.70980394, a: 0.21568628}
+  orthoColor: {r: 1, g: 0, b: 0.70980394, a: 1}
 --- !u!58 &1117528033
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2278,6 +2335,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   perspCollider: {fileID: 0}
   orthoCollider: {fileID: 1117528033}
+--- !u!114 &1117528036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117528030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d7021d03bd7c334c89c0ecc3e61f410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requireInteractTime: 0.5
+  interactable: 1
+  magneticField: {fileID: 1242621437}
+  isOnSwitch: 1
+  oneUse: 1
 --- !u!1 &1144761406
 GameObject:
   m_ObjectHideFlags: 0
@@ -2366,7 +2440,7 @@ GameObject:
   - component: {fileID: 1242621437}
   - component: {fileID: 1242621431}
   - component: {fileID: 1242621436}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Magnetic Field
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2400,8 +2474,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f069c83df2691994ab637ed1555e42de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perspColor: {r: 0.5283019, g: 0, b: 0, a: 0}
-  orthoColor: {r: 1, g: 0, b: 0.97479534, a: 0.5882353}
+  perspColor: {r: 1, g: 1, b: 1, a: 0}
+  orthoColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!23 &1242621433
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2497,10 +2571,10 @@ MonoBehaviour:
   isFieldON: 0
   slowedPhysics:
   - 3
-  - 6
-  - -5
-  fieldOnColor: {r: 0, g: 0, b: 0, a: 0}
-  fieldOffColor: {r: 0, g: 0, b: 0, a: 0}
+  - 10
+  - -1
+  fieldOnColor: {r: 1, g: 0, b: 0.97647065, a: 0.39215687}
+  fieldOffColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!1 &1610470661
 GameObject:
   m_ObjectHideFlags: 0
@@ -4143,11 +4217,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2708536364295344165, guid: 626de2273e1e8864ba039543684ec1c1, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8660254
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2708536364295344165, guid: 626de2273e1e8864ba039543684ec1c1, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2708536364295344165, guid: 626de2273e1e8864ba039543684ec1c1, type: 3}
       propertyPath: m_LocalRotation.y
@@ -4159,7 +4233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2708536364295344165, guid: 626de2273e1e8864ba039543684ec1c1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -60
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2708536364295344165, guid: 626de2273e1e8864ba039543684ec1c1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -4180,6 +4254,10 @@ PrefabInstance:
     - target: {fileID: 7121232109584626657, guid: 626de2273e1e8864ba039543684ec1c1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7302881064329913819, guid: 626de2273e1e8864ba039543684ec1c1, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7731300293126997314, guid: 626de2273e1e8864ba039543684ec1c1, type: 3}
       propertyPath: m_Name

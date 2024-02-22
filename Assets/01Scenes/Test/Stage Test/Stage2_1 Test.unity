@@ -665,7 +665,7 @@ GameObject:
   - component: {fileID: 392348393}
   - component: {fileID: 392348392}
   m_Layer: 0
-  m_Name: Background
+  m_Name: Background _ Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2078,7 +2078,7 @@ GameObject:
   - component: {fileID: 1782795271}
   - component: {fileID: 1782795270}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2097,7 +2097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   perspColor: {r: 1, g: 1, b: 1, a: 0}
-  orthoColor: {r: 1, g: 1, b: 1, a: 1}
+  orthoColor: {r: 0.4901961, g: 0.4901961, b: 0.4901961, a: 1}
 --- !u!212 &1782795271
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2140,7 +2140,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ce6ffa1a1a39284408ec96d2a0bc312d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
@@ -2619,6 +2619,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1508673793}
     m_Modifications:
+    - target: {fileID: 1823286890, guid: 2a1b9663635b9104caa474b6d08091fd, type: 3}
+      propertyPath: m_Radius
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 5756572791960051346, guid: 2a1b9663635b9104caa474b6d08091fd, type: 3}
       propertyPath: m_Name
       value: Flower Trampoline

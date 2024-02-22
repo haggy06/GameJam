@@ -7,6 +7,11 @@ public class PlayerController : RigidSwitch
     [Space(5)]
 
     [SerializeField]
+    private InteractBase curInteract;
+    public InteractBase CurInteract => curInteract;
+
+
+    [SerializeField]
     private bool controllable = true;
     public bool Controllable
     {
@@ -82,9 +87,17 @@ public class PlayerController : RigidSwitch
         if (controllable)
         {
             #region _Interact Logic_
-            if (curInteract != null && Input.GetKeyDown(KeyCode.A))
+            if (curInteract != null)
             {
-                curInteract.Interact();
+                if (Input.GetKeyDown(KeyCode.A))
+                {
+                    Debug.Log("상호작용");
+                    PopupManager.Inst.Interact_Popup.InteractStart(curInteract.RequireInteractTime);
+                }
+                else if (Input.GetKeyUp(KeyCode.A))
+                {
+                    PopupManager.Inst.Interact_Popup.InteractStop();
+                }
             }
             #endregion
 
@@ -177,6 +190,11 @@ public class PlayerController : RigidSwitch
         controllable = false;
 
         Debug.Log("게임 오버");
+        Invoke("GAMEOVER", 1f);
+    }
+    private void GAMEOVER()
+    {
+        GameManager.Inst.SceneMove(GameManager.Inst.CurScene);
     }
 
     public override void ToOrthoComplete()
@@ -211,8 +229,7 @@ public class PlayerController : RigidSwitch
         base.ToPerspComplete();
     }
 
-
-    private InteractBase curInteract;
+    
     protected override void OnTriggerEnter2D_Override(Collider2D collision)
     {
         if (collision.CompareTag("InteractableEntity"))
@@ -220,6 +237,8 @@ public class PlayerController : RigidSwitch
             if ((collision.TryGetComponent<InteractBase>(out InteractBase interact)))
             {
                 curInteract = interact;
+
+                PopupManager.Inst.PopupFadeIn(PopupManager.Inst.Interact_Popup, null);
             }
         }
     }
@@ -230,6 +249,9 @@ public class PlayerController : RigidSwitch
             if (collision.TryGetComponent<InteractBase>(out InteractBase interact))
             {
                 curInteract = null;
+
+                PopupManager.Inst.Interact_Popup.InteractStop();
+                PopupManager.Inst.PopupFadeOut();
             }
         }
     }
