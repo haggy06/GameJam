@@ -13,7 +13,7 @@ public class InteractPopup : PopupBase
     {
         this.requireTime = requireTime;
 
-        PopupManager.Inst.PopupFadeIn(this, null);
+        PopupFadeIn(null);
         StartCoroutine("GaugeFill");
     }
     public void InteractStop()
@@ -59,7 +59,7 @@ public class InteractPopup : PopupBase
         Debug.Log("상호작용 성공");
 
         GameManager.Inst.CurPlayer.CurInteract.Interact();
-        PopupManager.Inst.PopupFadeOut();
+        PopupFadeOut();
     }
 
     protected override void OnDeActive()

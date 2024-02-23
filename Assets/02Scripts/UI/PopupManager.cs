@@ -169,17 +169,20 @@ public class PopupManager : MonoSingleton<PopupManager>
 
     public void PopupFadeOut()
     {
-        currentPopup.PopupFadeOut();
-
-        if (currentPopup.OwnerPopup == null) // 현재 팝업을 열었던 팝업이 없을 경우
+        if (currentPopup != null)
         {
-            currentPopup = null;
-        }
-        else // 현재 팝업을 열었던 팝업이 있을 경우
-        {
-            currentPopup.OwnerPopup.PopupFadeIn_Again();
+            currentPopup.PopupFadeOut();
 
-            currentPopup = currentPopup.OwnerPopup;
+            if (currentPopup.OwnerPopup == null) // 현재 팝업을 열었던 팝업이 없을 경우
+            {
+                currentPopup = null;
+            }
+            else // 현재 팝업을 열었던 팝업이 있을 경우
+            {
+                currentPopup.OwnerPopup.PopupFadeIn_Again();
+
+                currentPopup = currentPopup.OwnerPopup;
+            }
         }
     }
     #endregion

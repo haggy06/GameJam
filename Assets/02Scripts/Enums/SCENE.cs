@@ -6,6 +6,6 @@
     StageSelect,
     Test4,
     Stage1,
-    Stage2x,
+    Stage2,
 
 }

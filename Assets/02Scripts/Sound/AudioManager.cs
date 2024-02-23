@@ -19,6 +19,7 @@ public enum SFX
 
 public enum BGM
 {
+    Mute,
     Title,
     Cutscene,
     Painting,
@@ -62,7 +63,7 @@ public class AudioManager : MonoSingleton<AudioManager>
         LeanTween.value(0.5f, 1f, 0.5f).setOnUpdate((float value) => bgmSpeacker.volume = value);
     }
 
-    public void PlayFBX(SFX sfx)
+    public void PlaySFX(SFX sfx)
     {
         AudioClip clip = Resources.Load<AudioClip>(Path.Combine("Sound" , (Path.Combine("SFX", sfx.ToString()))));
 

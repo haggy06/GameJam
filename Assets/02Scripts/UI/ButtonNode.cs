@@ -102,4 +102,9 @@ public class ButtonNode : MonoBehaviour
             PopupManager.Inst.CurButton = this;
         }
     }
+
+    public void ClickSound()
+    {
+        AudioManager.Inst.PlaySFX(SFX.Button);
+    }
 }

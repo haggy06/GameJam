@@ -172,7 +172,7 @@ MonoBehaviour:
   curInteract: {fileID: 0}
   controllable: 1
   moveSpeed: 4
-  jumpPower: 12
+  jumpPower: 14
   terminalVelocity: -20
   anim: {fileID: 5286311699714085965}
 --- !u!1001 &5286311699714085967
@@ -466,6 +466,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6211848369185055693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5016352109675555102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56474fe42ee070c4aac34e6dcc4e8f8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5680861050540290980 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 44eeda1bd2b875b4e97071b6a84329e5, type: 3}

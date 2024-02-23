@@ -119,9 +119,27 @@ public class PlayerController : RigidSwitch
                 {
                     anim.SetBool(PlayerHash.IsMove, isMove);
                 }
+
+                /*
+                if (isMove)
+                {
+                    StopCoroutine("WalkSound");
+                    StartCoroutine("WalkSound");
+                }
+                */
             }
         }
     }
+    private IEnumerator WalkSound()
+    {
+        while (isMove)
+        {
+            AudioManager.Inst.PlaySFX(SFX.Move);
+
+            yield return YieldInstructionCache.WaitForSeconds(0.4f);
+        }
+    }
+
     private void Update()
     {
         if (controllable)
@@ -171,6 +189,7 @@ public class PlayerController : RigidSwitch
 
                     rigid2D.velocity = tempVec;
 
+                    AudioManager.Inst.PlaySFX(SFX.Jump);
                     if (anim != null)
                     {
                         anim.SetTrigger(PlayerHash.Jump);
@@ -296,7 +315,7 @@ public class PlayerController : RigidSwitch
             {
                 curInteract = interact;
 
-                PopupManager.Inst.PopupFadeIn(PopupManager.Inst.Interact_Popup, null);
+                PopupManager.Inst.Interact_Popup.PopupFadeIn(null);
             }
         }
     }
@@ -309,7 +328,7 @@ public class PlayerController : RigidSwitch
                 curInteract = null;
 
                 PopupManager.Inst.Interact_Popup.InteractStop();
-                PopupManager.Inst.PopupFadeOut();
+                PopupManager.Inst.Interact_Popup.PopupFadeOut();
             }
         }
     }

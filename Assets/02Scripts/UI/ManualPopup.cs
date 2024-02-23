@@ -15,7 +15,7 @@ public class ManualPopup : PopupBase
         {
             manualImage.sprite = Resources.Load<Sprite>(Path.Combine("Manuals", imageName));
 
-            PopupManager.Inst.PopupFadeIn_Override(this, PopupManager.Inst.CurrentPopup);
+            PopupManager.Inst.PopupFadeIn(this, PopupManager.Inst.CurrentPopup);
         }
         else
         {

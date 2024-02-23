@@ -93,7 +93,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.1}
+  m_Offset: {x: 0, y: 0.075}
   serializedVersion: 2
   m_Radius: 0.075
 --- !u!1 &5756572791960051346
@@ -270,9 +270,9 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   - {x: -60, y: 180, z: 0}
   - {x: 0, y: 0, z: 0}
-  positionChange: 1
+  positionChange: 0
   rotationChange: 1
-  sizeChange: 1
+  sizeChange: 0
 --- !u!1 &5756572791994176519
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70bcc0e675502844a87d633bc9c4343d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bouncePower: 1.25
+  bouncePower: 1.4
   anim: {fileID: 368032483702803384}
 --- !u!1001 &5756572791739698688
 PrefabInstance:

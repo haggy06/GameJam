@@ -11,6 +11,7 @@ public class SceneMoveInteract : InteractBase
     {
         GameManager.Inst.CurPlayer.Controllable = false;
 
+        AudioManager.Inst.PlaySFX(SFX.Portal);
         GameManager.Inst.SceneMove(targetScene);
     }
 }

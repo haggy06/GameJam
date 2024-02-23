@@ -44,6 +44,7 @@ public class Trampoline : MonoBehaviour
                     rigid2D.velocity = velo;
                     Debug.Log(collision.gameObject.name + " 튕겨냄");
 
+                    AudioManager.Inst.PlaySFX(SFX.Trampoline);
                     anim.SetTrigger(bounceHash); // 바운스 애니메이션 실행
                 }
             }

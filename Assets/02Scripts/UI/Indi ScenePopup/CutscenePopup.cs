@@ -14,12 +14,14 @@ public class CutscenePopup : PopupBase
     {
         base.OnActive();
 
+        AudioManager.Inst.BGM = BGM.Cutscene;
         StartCoroutine("CutsceneInputCheck");
     }
     protected override void OnDeActive()
     {
         base.OnDeActive();
 
+        AudioManager.Inst.BGM = BGM.Title;
         StopCoroutine("CutsceneInputCheck");
     }
     [Space(5), SerializeField]
@@ -43,8 +45,7 @@ public class CutscenePopup : PopupBase
 
                 if (cutSceneIndex < 4)
                 {
-                    AllCutsceneClose();
-                    CutsceneOpen(cutSceneIndex);
+                    transform.GetChild(cutSceneIndex).GetComponent<PopupBase>().PopupFadeIn(null);
 
                     yield return YieldInstructionCache.WaitForSeconds(closeRequireTime * 1.5f);
                 }
@@ -62,20 +63,11 @@ public class CutscenePopup : PopupBase
     {
         for (int i = 0; i < 4; i++)
         {
-            if (transform.GetChild(i).GetComponent<Image>().color.a > 0) // ÄÆ¾ÀÀÌ ¿­·ÁÀÖÀ» °æ¿ì
-            {
-                //LeanTween.alpha(transform.GetChild(i).gameObject, 0f, closeRequireTime);
-                //LeanTween.color(transform.GetChild(index).gameObject, Color.white, closeRequireTime).setOnUpdate((Color value) => transform.GetChild(index).GetComponent<Image>().color = value);
-
-                transform.GetChild(i).GetComponent<Image>().color = Color.clear;
-            }
+            transform.GetChild(i).GetComponent<PopupBase>().PopupHide();
         }
     }
     private void CutsceneOpen(int index)
     {
-        //LeanTween.alpha(transform.GetChild(index).gameObject, 0f, closeRequireTime);
-        //LeanTween.color(transform.GetChild(i).gameObject, Color.clear, closeRequireTime).setOnUpdate((Color value) => transform.GetChild(i).GetComponent<Image>().color = value);
-
-        transform.GetChild(index).GetComponent<Image>().color = Color.white;
+        transform.GetChild(index).GetComponent<PopupBase>().PopupFadeIn(null);
     }
 }
