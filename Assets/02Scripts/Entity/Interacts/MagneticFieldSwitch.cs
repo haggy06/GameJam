@@ -19,6 +19,8 @@ public class MagneticFieldSwitch : InteractBase
 
     public override void Interact()
     {
+        base.Interact();
+
         Debug.Log("자기장 상호작용");
 
         magneticField.FieldON(isOnSwitch);

@@ -14,6 +14,8 @@ public enum SFX
     MagneticON,
     MagneticOFF,
     Trampoline,
+    Dimension,
+    Sign,
 
 }
 

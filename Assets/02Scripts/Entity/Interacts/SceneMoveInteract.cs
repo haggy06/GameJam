@@ -9,6 +9,8 @@ public class SceneMoveInteract : InteractBase
 
     public override void Interact()
     {
+        base.Interact();
+
         GameManager.Inst.CurPlayer.Controllable = false;
 
         AudioManager.Inst.PlaySFX(SFX.Portal);

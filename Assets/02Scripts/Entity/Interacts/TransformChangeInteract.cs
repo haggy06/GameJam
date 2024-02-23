@@ -26,8 +26,12 @@ public class TransformChangeInteract : InteractBase
     [SerializeField]
     private bool sizeChange = true;
 
+    [SerializeField]
+    private Animator anim;
     public override void Interact()
     {
+        base.Interact();
+
         if (positionChange)
             LeanTween.moveLocal(target, targetTransform[0], duration).setEase(leanType);
 
@@ -43,5 +47,10 @@ public class TransformChangeInteract : InteractBase
         //Destroy(GetComponent<ColorSwitch>());
 
         LeanTween.alpha(gameObject, 0f, 0.25f).setEase(LeanTweenType.easeOutCirc);
+
+        if (anim != null)
+        {
+            anim.SetTrigger("ON");
+        }
     }
 }

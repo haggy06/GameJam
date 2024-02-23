@@ -5,6 +5,9 @@ using UnityEngine;
 public class InteractBase : MonoBehaviour
 {
     [SerializeField]
+    protected SFX soundClip;
+
+    [SerializeField]
     private float requireInteractTime = 1f;
     public float RequireInteractTime => requireInteractTime;
 
@@ -24,6 +27,6 @@ public class InteractBase : MonoBehaviour
 
     public virtual void Interact()
     {
-
+        AudioManager.Inst.PlaySFX(soundClip);
     }
 }

@@ -144,6 +144,7 @@ public class PlayerController : RigidSwitch
     {
         if (controllable)
         {
+            /*
             #region _Interact Logic_
             if (curInteract != null)
             {
@@ -158,6 +159,7 @@ public class PlayerController : RigidSwitch
                 }
             }
             #endregion
+            */
 
             #region _Move Logic_
             if (ProjectionManager.Inst.Orthographic) // 플랫포머 상태
@@ -221,6 +223,8 @@ public class PlayerController : RigidSwitch
             #region _Projection Change Logic_
             if (Input.GetKeyDown(KeyCode.LeftShift)) // 시점 전환
             {
+                AudioManager.Inst.PlaySFX(SFX.Dimension);
+
                 ProjectionManager.Inst.ProjectionChange();
             }
             #endregion
@@ -315,6 +319,7 @@ public class PlayerController : RigidSwitch
             {
                 curInteract = interact;
 
+                PopupManager.Inst.Interact_Popup.InteractStart(curInteract.RequireInteractTime);
                 PopupManager.Inst.Interact_Popup.PopupFadeIn(null);
             }
         }

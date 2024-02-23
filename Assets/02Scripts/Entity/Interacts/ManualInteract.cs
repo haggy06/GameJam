@@ -9,6 +9,8 @@ public class ManualInteract : InteractBase
 
     public override void Interact()
     {
+        base.Interact();
+
         Debug.Log("¹®¼­ ÆîÄ§");
 
         PopupManager.Inst.Manual_Popup.SetManualImage(manualName);

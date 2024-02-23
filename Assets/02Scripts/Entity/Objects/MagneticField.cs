@@ -25,7 +25,7 @@ public class MagneticField : MonoBehaviour
                 originalPhysics[1] = player.JumpPower;
                 originalPhysics[2] = player.TerminalVelocity;
 
-
+                AudioManager.Inst.PlaySFX(SFX.MagneticON);
                 player.PhysicalChange(slowedPhysics[0], slowedPhysics[1], slowedPhysics[2], true);
             }
             else if (collision.TryGetComponent<Rigidbody2D>(out Rigidbody2D rigid2D))// PlayerController는 없지만 Rigidbody2D는 있는 오브젝트였을 경우
@@ -42,6 +42,8 @@ public class MagneticField : MonoBehaviour
             if (collision.TryGetComponent<PlayerController>(out PlayerController player)) // PlayerController가 있는 오브젝트였을 경우
             {
                 player.PhysicalChange(originalPhysics[0], originalPhysics[1], originalPhysics[2], false);
+
+                AudioManager.Inst.PlaySFX(SFX.MagneticOFF);
             }
             else if (collision.TryGetComponent<Rigidbody2D>(out Rigidbody2D rigid2D))// PlayerController는 없지만 Rigidbody2D는 있는 오브젝트였을 경우
             {
