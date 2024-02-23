@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4386952, g: 0.48683834, b: 0.5671065, a: 1}
+  m_IndirectSpecularColor: {r: 0.05001308, g: 0.042664923, b: 0.021435702, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1410,7 +1410,7 @@ Transform:
   m_Children:
   - {fileID: 5516532922971724916}
   m_Father: {fileID: 7229583781326068361}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 25, y: 0, z: 0}
 --- !u!1 &578632139
 GameObject:
@@ -2028,6 +2028,7 @@ Transform:
   - {fileID: 1090101815}
   - {fileID: 1016135733}
   - {fileID: 1626835190}
+  - {fileID: 5405463088072342738}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6579,14 +6580,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5405463088072342736}
-  m_LocalRotation: {x: 0.7981775, y: -0.014648962, z: 0.021147234, w: 0.6018729}
-  m_LocalPosition: {x: 0.45483375, y: 2.6353815, z: 3.360209}
+  m_LocalRotation: {x: 0.97057915, y: -0.18389717, z: -0.10042546, w: -0.11862873}
+  m_LocalPosition: {x: 0.4031671, y: 3.8137147, z: 3.3602092}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7229583781326068361}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 105.96701, y: -3.3609924, z: -0.43099976}
+  m_Father: {fileID: 1034915383}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 195.499, y: 9.033997, z: 20.225998}
 --- !u!108 &5405463088072342739
 Light:
   m_ObjectHideFlags: 0
@@ -6598,7 +6599,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.24705882, g: 0.24705882, b: 0.24705882, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -7916,7 +7917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   perspColor: {r: 0, g: 0, b: 0, a: 1}
-  orthoColor: {r: 1, g: 1, b: 1, a: 1}
+  orthoColor: {r: 0.6862745, g: 0.6862745, b: 0.6862745, a: 1}
 --- !u!33 &6693606493981885253
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8330,7 +8331,6 @@ Transform:
   - {fileID: 2122803704}
   - {fileID: 5516532923411674796}
   - {fileID: 4861517298329495553}
-  - {fileID: 5405463088072342738}
   - {fileID: 564404386}
   m_Father: {fileID: 488197735}
   m_RootOrder: 1

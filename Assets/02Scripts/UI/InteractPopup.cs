@@ -28,8 +28,8 @@ public class InteractPopup : PopupBase
         base.OnActive();
 
         fillImage.fillAmount = 0f;
-        StopCoroutine("FollowTarget");
-        StartCoroutine("FollowTarget");
+
+        transform.position = Camera.main.WorldToScreenPoint(GameManager.Inst.CurPlayer.CurInteract.gameObject.transform.position + (Vector3.up * 2));
     }
     private IEnumerator FollowTarget()
     {
