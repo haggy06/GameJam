@@ -319,8 +319,7 @@ public class PlayerController : RigidSwitch
             {
                 curInteract = interact;
 
-                PopupManager.Inst.Interact_Popup.InteractStart(curInteract.RequireInteractTime);
-                PopupManager.Inst.Interact_Popup.PopupFadeIn(null);
+                interact.Interact();
             }
         }
     }
@@ -331,9 +330,6 @@ public class PlayerController : RigidSwitch
             if (collision.TryGetComponent<InteractBase>(out InteractBase interact))
             {
                 curInteract = null;
-
-                PopupManager.Inst.Interact_Popup.InteractStop();
-                PopupManager.Inst.Interact_Popup.PopupFadeOut();
             }
         }
     }
